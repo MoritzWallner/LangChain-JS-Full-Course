@@ -3,6 +3,7 @@ config();
 
 import { Configuration, OpenAIApi } from "openai";
 
+console.log(process.env.OPENAI_API_KEY);
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -33,6 +34,6 @@ const promptTemplate = `
 
 const prompt = promptTemplate.replace("{question}", question);
 
-chat(prompt)
-  .then((response) => console.log(response))
-  .catch((error) => console.error(error));
+// chat(prompt)
+//   .then((response) => console.log(response))
+//   .catch((error) => console.error(error));
