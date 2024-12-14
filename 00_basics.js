@@ -15,7 +15,7 @@ async function chat(input) {
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: messages,
-    temperature: 0,
+    temperature: 1,
   });
 
   return response.data.choices[0].message.content;
@@ -23,9 +23,9 @@ async function chat(input) {
 
 const question = "What is the capital of France";
 
-chat(question)
-  .then((response) => console.log(response))
-  .catch((error) => console.error(error));
+// chat(question)
+//   .then((response) => console.log(response))
+//   .catch((error) => console.error(error));
 
 const promptTemplate = `
   Be very funny when answering questions
@@ -34,6 +34,6 @@ const promptTemplate = `
 
 const prompt = promptTemplate.replace("{question}", question);
 
-// chat(prompt)
-//   .then((response) => console.log(response))
-//   .catch((error) => console.error(error));
+chat(prompt)
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));

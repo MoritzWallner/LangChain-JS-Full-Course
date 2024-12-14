@@ -10,15 +10,20 @@ const loader = new TextLoader("./restaurant.txt");
 
 const docs = await loader.load();
 
+// console.log(docs);
+
 const splitter = new CharacterTextSplitter({
   chunkSize: 200,
   chunkOverlap: 50,
 });
 
 const documents = await splitter.splitDocuments(docs);
-console.log(documents);
+// console.log(JSON.stringify(documents, null, 2));
 
 const embeddings = new OpenAIEmbeddings();
 
 const vectorstore = await FaissStore.fromDocuments(documents, embeddings);
+
+console.log(vectorstore);
+
 await vectorstore.save("./");
